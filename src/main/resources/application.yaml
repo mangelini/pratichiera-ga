@@ -1,6 +1,12 @@
 spring:
   application:
     name: pratichiera-ga
+  jpa:
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/master.xml
 gg:
   jte:
     development-mode: true
