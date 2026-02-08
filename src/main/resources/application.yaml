@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: pratichiera-ga
+gg:
+  jte:
+    development-mode: true
