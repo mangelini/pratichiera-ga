@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
                     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
                         HttpSession session = request.getSession(false);
 
-                        if (session == null || session.getAttribute("user_id") == null) {
+                        if (session == null || session.getAttribute("currentUser") == null) {
                             response.sendRedirect("/login");
                             return false;
                         }

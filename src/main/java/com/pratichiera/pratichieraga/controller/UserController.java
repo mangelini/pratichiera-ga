@@ -35,16 +35,20 @@ public class UserController {
         if (userEntity.isPresent()) {
             UserEntity user = userEntity.get();
             if (user.getPassword().equals(password)) {
-                session.setAttribute("user_id", user.getId());
-                session.setAttribute("is_admin", user.getIsAdmin());
-                return "redirect:/";
+                session.setAttribute("currentUser", user);
+
+                if (user.getIsAdmin()) {
+                    return "redirect:/admin";
+                } else {
+                    return "redirect:/orders";
+                }
             }
         }
 
         return "redirect:/login?error";
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/login?logout";

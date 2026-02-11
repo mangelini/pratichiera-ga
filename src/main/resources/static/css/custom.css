@@ -1,0 +1,8 @@
+:root {
+  --pico-primary: #73212b;
+  --pico-primary-background: #73212b;
+  --pico-primary-hover: #5a1a21;
+  --pico-primary-underline: rgba(115, 33, 43, 0.5);
+  --pico-primary-focus: rgba(115, 33, 43, 0.25);
+  --pico-primary-inverse: #ffffff;
+}

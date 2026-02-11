@@ -5,4 +5,8 @@
                    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <include file="db/changelog/create_user_table.xml" relativeToChangelogFile="false"/>
+    <include file="/db/changelog/create_price_list_table.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/create_price_list_items_table.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/refactor_price_list_users.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/create_orders_table.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

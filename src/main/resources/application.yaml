@@ -7,6 +7,21 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/master.xml
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  admin:
+    email: ${APP_ADMIN_EMAIL}
 gg:
   jte:
     development-mode: true

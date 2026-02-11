@@ -13,13 +13,14 @@ import java.time.Instant;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    @SequenceGenerator(name = "user_sequence", sequenceName = "user_seq")
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_seq", allocationSize = 1)
     @Column(name = "id")
     private Long id;
 

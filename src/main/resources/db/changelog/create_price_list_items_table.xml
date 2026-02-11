@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-5.0.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="1770815957167-6" author="matt">
+        <createSequence incrementBy="50" sequenceName="price_list_item_seq" startValue="1"/>
+    </changeSet>
+
+    <changeSet id="1770815957167-7" author="matt">
+        <createTable tableName="price_list_items">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_price_list_items"/>
+            </column>
+            <column name="price_list_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="packaging" type="VARCHAR(255)"/>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="price_per_kg" type="DECIMAL">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1770815957167-8" author="matt">
+        <addForeignKeyConstraint baseColumnNames="price_list_id" baseTableName="price_list_items"
+                                 constraintName="FK_PRICE_LIST_ITEMS_ON_PRICE_LIST" referencedColumnNames="id"
+                                 referencedTableName="price_lists"/>
+    </changeSet>
+
+</databaseChangeLog>
