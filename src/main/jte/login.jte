@@ -27,9 +27,13 @@
 <body>
 <main>
     <article>
-        <header>
+        <header style="text-align: center;">
+            <img
+                    src="https://cdn.shopify.com/s/files/1/0962/4780/8325/files/logo_pratichiera_mail.png?v=1761201467"
+                    style="max-height: 100px; width: auto; margin: 0 auto 1rem; display: block;"
+            >
             <hgroup>
-                <p>Login Pratichiera Gruppi Acquisto</p>
+                <p style="text-align: center;">Gruppi Acquisto</p>
             </hgroup>
         </header>
 
@@ -56,7 +60,7 @@
                 <input type="password" id="password" name="password" placeholder="Password" required>
             </label>
 
-            <button type="submit" class="contrast">Login</button>
+            <button type="submit">Login</button>
         </form>
     </article>
 </main>

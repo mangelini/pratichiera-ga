@@ -1,8 +1,13 @@
-:root {
-  --pico-primary: #73212b;
-  --pico-primary-background: #73212b;
-  --pico-primary-hover: #5a1a21;
-  --pico-primary-underline: rgba(115, 33, 43, 0.5);
-  --pico-primary-focus: rgba(115, 33, 43, 0.25);
-  --pico-primary-inverse: #ffffff;
+/* Higher specificity for PicoCSS 2 theme variables */
+[data-theme="light"],
+:root:not([data-theme="dark"]) {
+    --pico-primary: #73212B;
+    --pico-primary-background: #73212B;
+    --pico-primary-hover: #1D1D1D;
+    --pico-primary-hover-background: #1D1D1D;
+    --pico-primary-hover-border: #1D1D1D;
+    --pico-primary-focus: #1D1D1D;
+    --pico-primary-underline: rgba(115, 33, 43, 0.5);
+    --pico-primary-focus: rgba(115, 33, 43, 0.25);
+    --pico-primary-inverse: #ffffff;
 }
