@@ -10,8 +10,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    username: ${MAIL_USERNAME:user}
+    password: ${MAIL_PASSWORD:pass}
     properties:
       mail:
         smtp:
@@ -21,7 +21,7 @@ spring:
 
 app:
   admin:
-    email: ${APP_ADMIN_EMAIL}
+    email: ${APP_ADMIN_EMAIL:admin@example.com}
 gg:
   jte:
     development-mode: true
