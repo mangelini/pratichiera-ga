@@ -72,7 +72,11 @@ public class OrderController {
         });
 
         // 2. Submit order (Creates OrderEntity, Emails, Resets Quantities)
-        orderService.submitOrder(user, priceList);
+        String fullName = params.get("fullName");
+        String phoneNumber = params.get("phoneNumber");
+        String email = params.get("email");
+
+        orderService.submitOrder(user, priceList, fullName, phoneNumber, email);
 
         return "redirect:/orders?success=true";
     }

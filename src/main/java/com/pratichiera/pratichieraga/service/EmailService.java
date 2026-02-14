@@ -63,6 +63,12 @@ public class EmailService {
         html.append("<html><body>");
         html.append("<h2>Nuovo Ordine Ricevuto</h2>");
         html.append("<p><strong>Utente:</strong> ").append(order.getUser().getUsername()).append("</p>");
+        html.append("<p><strong>Nome/Ragione Sociale:</strong> ")
+                .append(order.getFullName() != null ? order.getFullName() : "").append("</p>");
+        html.append("<p><strong>Telefono:</strong> ")
+                .append(order.getPhoneNumber() != null ? order.getPhoneNumber() : "").append("</p>");
+        html.append("<p><strong>Email:</strong> ").append(order.getEmail() != null ? order.getEmail() : "")
+                .append("</p>");
         html.append("<p><strong>Data:</strong> ").append(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
                 .withZone(ZoneId.systemDefault()).format(order.getCreatedDate())).append("</p>");
 

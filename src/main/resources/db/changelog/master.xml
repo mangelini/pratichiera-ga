@@ -9,4 +9,5 @@
     <include file="db/changelog/create_price_list_items_table.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/refactor_price_list_users.xml" relativeToChangelogFile="false"/>
     <include file="db/changelog/create_orders_table.xml" relativeToChangelogFile="false"/>
+    <include file="db/changelog/add_user_info_to_orders.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

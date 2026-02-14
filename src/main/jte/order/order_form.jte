@@ -49,7 +49,7 @@
             <p class="text-gray-600">Compila le quantità desiderate e clicca su "Salva Ordine".</p>
         </div>
 
-        <form action="/orders/submit" method="post">
+        <form action="/orders/submit" method="post" id="orderForm">
             <div class="overflow-x-auto bg-white rounded-lg shadow mb-8">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
@@ -81,11 +81,58 @@
                     </tbody>
                 </table>
             </div>
-            <footer class="sticky bottom-0 bg-white p-4 shadow-lg border-t mt-4 flex justify-end">
-                <button type="submit" class="bg-primary text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-hover transition shadow-lg transform hover:-translate-y-0.5">💾 Invia Ordine</button>
+            <footer class="sticky bottom-0 p-4 border-t mt-4 flex flex-col justify-center">
+                <div class="bg-white p-6 rounded-lg shadow mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">I tuoi dati</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo / Ragione Sociale *</label>
+                            <input type="text" id="fullName" name="fullName" required
+                                   class="align-middle block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border">
+                        </div>
+                        <div>
+                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700 mb-1">Telefono *</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" required
+                                   class="align-middle block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                            <input type="email" id="email" name="email" required
+                                   class="align-middle block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2 border">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" id="submitOrderBtn" disabled
+                        class="self-end py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed">
+                    Invia Ordine
+                </button>
             </footer>
         </form>
     @endif
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('orderForm');
+        const submitBtn = document.getElementById('submitOrderBtn');
+        const inputs = [
+            document.getElementById('fullName'),
+            document.getElementById('phoneNumber'),
+            document.getElementById('email')
+        ];
+
+        function checkInputs() {
+            const allFilled = inputs.every(input => input.value.trim() !== '');
+            submitBtn.disabled = !allFilled;
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('input', checkInputs);
+        });
+
+        // Check initially in case of auto-fill
+        checkInputs();
+    });
+</script>
 </body>
 </html>
