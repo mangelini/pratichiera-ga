@@ -69,37 +69,45 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").withZone(ZoneId.systemDefault()).format(order.getCreatedDate())}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${order.getUser().getUsername()}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">€ ${totalPrice}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <td class="px-6 py-4 text-sm text-gray-500 relative">
                             <details class="group">
-                                <summary class="cursor-pointer text-primary hover:text-primary-hover font-medium flex items-center">
-                                    <span>Vedi Prodotti (${order.getItems().size()})</span>
-                                    <svg class="w-4 h-4 ml-2 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <summary class="cursor-pointer inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 hover:bg-primary/20 text-primary rounded-full text-sm font-medium transition-colors">
+                                    <svg class="w-4 h-4 transition-transform group-open:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                     </svg>
+                                    <span>${order.getItems().size()} prodott${order.getItems().size() == 1 ? "o" : "i"}</span>
                                 </summary>
-                                <div class="mt-4 border-l-2 border-gray-100 pl-4 bg-gray-50 rounded p-4">
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead>
-                                            <tr>
-                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Prodotto</th>
-                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Conf.</th>
-                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Prezzo/Kg</th>
-                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Qtà</th>
-                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Totale</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-gray-200">
-                                            @for(OrderItemEntity item : order.getItems())
+                                <div class="mt-4 bg-white rounded-lg border border-gray-200 overflow-hidden">
+                                    <div class="max-h-80 overflow-y-auto">
+                                        <table class="min-w-full">
+                                            <thead class="bg-gray-50 sticky top-0">
                                                 <tr>
-                                                    <td class="px-4 py-2 text-sm text-gray-900">${item.getProductName()}</td>
-                                                    <td class="px-4 py-2 text-sm text-gray-500">${item.getPackaging()}</td>
-                                                    <td class="px-4 py-2 text-sm text-gray-500">€ ${item.getPricePerKg()}</td>
-                                                    <td class="px-4 py-2 text-sm text-gray-900 font-bold">${item.getQuantity()}</td>
-                                                    <td class="px-4 py-2 text-sm text-gray-500">€ ${item.getTotalPrice()}</td>
+                                                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Prodotto</th>
+                                                    <th class="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Conf.</th>
+                                                    <th class="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Prezzo/Kg</th>
+                                                    <th class="px-6 py-4 text-center text-xs font-semibold text-gray-600 uppercase tracking-wider">Qtà</th>
+                                                    <th class="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">Totale</th>
                                                 </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody class="divide-y divide-gray-100">
+                                                @for(OrderItemEntity item : order.getItems())
+                                                    <tr class="hover:bg-gray-50 transition-colors">
+                                                        <td class="px-6 py-4 text-base text-gray-900 font-medium">${item.getProductName()}</td>
+                                                        <td class="px-6 py-4 text-base text-gray-500">${item.getPackaging()}</td>
+                                                        <td class="px-6 py-4 text-base text-gray-500 text-right">€ ${item.getPricePerKg()}</td>
+                                                        <td class="px-6 py-4 text-base text-center">
+                                                            <span class="inline-flex items-center justify-center min-w-10 h-10 px-3 bg-primary/10 text-primary font-bold rounded-full">${item.getQuantity()}</span>
+                                                        </td>
+                                                        <td class="px-6 py-4 text-base text-gray-900 font-semibold text-right">€ ${item.getTotalPrice()}</td>
+                                                    </tr>
+                                                @endfor
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-between items-center">
+                                        <span class="text-sm text-gray-500">${order.getItems().size()} prodott${order.getItems().size() == 1 ? "o" : "i"}</span>
+                                        <span class="text-base font-semibold text-gray-900">Totale: € ${totalPrice}</span>
+                                    </div>
                                 </div>
                             </details>
                         </td>

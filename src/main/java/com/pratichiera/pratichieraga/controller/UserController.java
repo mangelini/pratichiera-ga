@@ -40,7 +40,7 @@ public class UserController {
                 if (user.getIsAdmin()) {
                     return "redirect:/admin";
                 } else {
-                    return "redirect:/orders";
+                    return "redirect:/orders?success=false";
                 }
             }
         }

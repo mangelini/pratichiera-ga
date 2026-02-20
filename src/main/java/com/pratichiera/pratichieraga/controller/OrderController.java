@@ -22,7 +22,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @GetMapping
-    public String viewCurrentOrder(HttpSession session, Model model) {
+    public String viewCurrentOrder(HttpSession session, Model model, @RequestParam(required = false) Boolean success) {
         UserEntity user = (UserEntity) session.getAttribute("currentUser");
 
         if (user == null) {
@@ -36,6 +36,7 @@ public class OrderController {
 
         model.addAttribute("priceList", priceList);
         model.addAttribute("user", user);
+        model.addAttribute("success", success);
 
         return "order/order_form";
     }

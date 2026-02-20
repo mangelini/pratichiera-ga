@@ -1,0 +1,48 @@
+name: Build and Deploy GraalVM Native Image
+
+on:
+  push:
+    branches: [ "main", "master" ] # Trigger on push to your main branch
+
+env:
+  # This sets the image name to ghcr.io/your-github-username/pratichiera-ga:latest
+  IMAGE_NAME: ghcr.io/${{ github.repository }}:latest
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up GraalVM
+        uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '25'
+          distribution: 'graalvm-community'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Spring Boot Native Image using Cloud Native Buildpacks
+        run: |
+          ./mvnw spring-boot:build-image \
+            -Pnative \
+            -Dspring-boot.build-image.imageName=${{ env.IMAGE_NAME }} \
+            -DskipTests
+
+      - name: Push Image to GHCR
+        run: docker push ${{ env.IMAGE_NAME }}
+
+      - name: Trigger Render Deployment
+        # You will get this URL from Render in Step 4
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}

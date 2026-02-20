@@ -4,7 +4,7 @@
 
 @param PriceListEntity priceList
 @param UserEntity user
-@param Boolean success = false
+@param Boolean success
 
 <!DOCTYPE html>
 <html lang="it" data-theme="light">
@@ -81,7 +81,7 @@
                     </tbody>
                 </table>
             </div>
-            <footer class="sticky bottom-0 p-4 border-t mt-4 flex flex-col justify-center">
+            <footer class="p-4 border-t mt-4 flex flex-col justify-center">
                 <div class="bg-white p-6 rounded-lg shadow mb-6">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">I tuoi dati</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">

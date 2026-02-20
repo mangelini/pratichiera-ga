@@ -36,14 +36,6 @@ public class OrderItemEntity {
     private Integer quantity;
 
     public BigDecimal getTotalPrice() {
-        // Approximate calculation - in real world weight might vary, but for
-        // estimation:
-        // If price is per KG, we'd need weight. If quantity is just 'pieces', we assume
-        // price is per piece or similar.
-        // Given existing PriceListItemEntity has pricePerKg, but user enters 'quantity'
-        // (likely pieces/packages).
-        // For now, we store the data as is. Total price calculation might be complex
-        // without weight.
         return pricePerKg.multiply(BigDecimal.valueOf(quantity));
     }
 }
