@@ -45,7 +45,6 @@ public class OrderEntity {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItemEntity> items = new ArrayList<>();
 
-    // Helper method to add item
     public void addItem(OrderItemEntity item) {
         items.add(item);
         item.setOrder(this);
